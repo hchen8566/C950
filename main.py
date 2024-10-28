@@ -61,12 +61,17 @@ def distance_calculator(position_x, position_y):
 truck_1 = truck.Truck(16, 18, None, None, 0.0, "4001 South 700 East", datetime.timedelta(hours=10, minutes=20))
 
 # the second truck will take the packages that have to be delivered on truck 2
-# the second truck will take packagaes 13, 15, 19 which have to be delivered together
 # the second truck will take packages that wont arrive until 9:05
 # the second truck will fill up on packages that are remaining until the load has been met
 truck_2 = truck.Truck(16, 18, None, None, 0.0, "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
 
-# the third truck will take the first 16 packages without a special note
+# the third truck will packages 13, 15, 19, 14, 16, 20 which have to be delivered together
 truck_3 = truck.Truck(16, 18, None, None, 0.0, "4001 South 700 East", datetime.timedelta(hours=8))
+
+# loading truck 3 first
+truck_3.packages = 
+
+# loading truck 2
+truck_2.packages = 
 
 
