@@ -14,24 +14,27 @@ class Package:
         self.status = status
         self.departureTime = None
         self.deliveryTime = None
+    
+    def summary(self):
+        print(f"ID: {self.package_id}, Address: {self.street}, {self.city}, {self.state} {self.zip_code}, Status: {self.status}, Depart Time: {self.departureTime}, Delivery Time: {self.deliveryTime}")
 
     def __repr__(self):
-        return (f"Package({self.package_id}, {self.street}, {self.city}, {self.state}, "
-                f"{self.zip_code}, {self.deadline}, {self.weight}, {self.notes}, {self.deliveryTime}, {self.departureTime})")
+        return (f"Package: ({self.package_id}, {self.street}, {self.city}, {self.state}, "
+                f"{self.zip_code}, {self.deadline}, {self.weight}, {self.notes})")
     
-    def status_update(self, timeDelta) :
+    def status_update(self, a_timedelta) :
         if self.deliveryTime == None:
-            self.status = "At the Delivery Depot"
-        elif timeDelta < self.departureTime:
-            self.status = "At the Delivery Depot"   
-        elif timeDelta < self.deliveryTime:
-            self.status = "Delivering"     
+            self.status = "At the hub"
+        elif a_timedelta < self.departureTime:
+            self.status = "At the hub"   
+        elif a_timedelta < self.deliveryTime:
+            self.status = "En route"     
         else:
             self.status = "Delivered" 
         
         # specific outlier edge case code for the one package that has the wrong address
-        if self.ID == 9:         
-            if timeDelta > datetime.timedelta (hours=10, minutes= 20):
+        if self.package_id == 9:         
+            if a_timedelta > datetime.timedelta(hours=10, minutes=10):
                 self.street = "410 S State St"  
                 self.zip = "84111"  
             else:

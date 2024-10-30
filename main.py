@@ -36,7 +36,7 @@ with open("packageCSV.csv") as package_file:
         packageZipcode = package[4]
         packageDeadline_time = package[5]
         packageWeight = package[6]
-        packageStatus = "At the Delivery Depot"
+        packageStatus = "At the hub"
         packageNotes = package[7]
 
         # turning the data into a package object 
@@ -125,7 +125,7 @@ def package_delivery(truck):
         #print("NEW LIST", unfinished_delivery)
         #print("Target Distance", target_distance)
         tempPackage.deliveryTime = truck.time
-        tempPackage.departureTime = truck.time
+        tempPackage.departureTime = truck.depart_time
         truck.packages.append(tempPackage.package_id)
 
 
@@ -133,8 +133,128 @@ def package_delivery(truck):
 package_delivery(truck_3)
 package_delivery(truck_2)
 
+
 # whichever truck comes back first, truck 1 will then go out
-if (truck_2.time > truck_3.time):
-    truck_1.depart_time = truck_3.time
-else :
-    truck_1.depart_time = truck_2.time
+truck_1.depart_time = truck_2.time
+truck_1.time = truck_1.depart_time
+package_delivery(truck_1)
+
+
+def start_menu():
+
+    # Print Intro
+    print("Welcome to WGUPS Delivery Algorithm Program. Enter 3 at anytime to quit")
+    print("The total mileage of all trucks is: ", truck_1.mileage + truck_2.mileage + truck_3.mileage, " miles\n")
+
+    # Variable to quit loop
+    notQuit = True
+
+    while (notQuit == True) :
+        print("Choose your options: ")
+        print("\n1) View Status of All Packages at a Specific Time")
+        print("\n2) View Status for a Specific Truck at a Specific Time")
+        print("\n3) Quit the Program")
+        user_input = input("Please select your options 1, 2, or 3. All other options will cause the program to exit.\n")
+
+        # exit condition
+        if ((user_input != "1") and (user_input != "2")):
+            exit()
+
+        # status of all packages
+        if (user_input == "1"):
+
+            try:
+                user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                hours, minutes, seconds = map(int, user_time.split(':'))
+                user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
+                print("Your entered time is ", user_time)
+                for i in range(1,41):
+                    tempPackage = hashTable_package.lookup_package(i)
+                    tempPackage.status_update(user_time)
+                    tempPackage.summary()
+
+
+
+            except ValueError:
+                print("\nSorry invalid input try again")
+
+        # status of packages on a specific truck
+        if (user_input == "2"):
+
+            try:
+                user_input = input("\n Please choose which truck (1, 2, 3): \n")
+
+                # user chooses truck 1
+                if (user_input == "1"):
+                    try:
+                        user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                        hours, minutes, seconds = map(int, user_time.split(':'))
+                        user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
+                        print("Your entered time is : ", user_time, " for Truck 1\n")
+                        for i in truck_1.packages:
+                            tempPackage = hashTable_package.lookup_package(i)
+                            tempPackage.status_update(user_time)
+                            tempPackage.summary()
+
+
+
+                    except ValueError:
+                        print("\nSorry invalid input try again")
+
+                # user chooses truck 2
+                if (user_input == "2"):
+                    try:
+                        user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                        hours, minutes, seconds = map(int, user_time.split(':'))
+                        user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
+                        print("Your entered time is : ", user_time, " for Truck 2\n")
+                        for i in truck_2.packages:
+                            tempPackage = hashTable_package.lookup_package(i)
+                            tempPackage.status_update(user_time)
+                            tempPackage.summary()
+
+
+
+
+                    except ValueError:
+                        print("\nSorry invalid input try again")
+
+                # user chooses truck 3
+                if (user_input == "3"):
+                    try:
+                        user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                        hours, minutes, seconds = map(int, user_time.split(':'))
+                        user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
+                        print("Your entered time is : ", user_time, " for Truck 3\n")
+                        for i in truck_3.packages:
+                            tempPackage = hashTable_package.lookup_package(i)
+                            tempPackage.status_update(user_time)
+                            tempPackage.summary()
+
+
+
+                    except ValueError:
+                        print("\nSorry invalid input try again")
+
+
+
+
+            except ValueError:
+                print("\nSorry invalid input try again")
+
+
+
+
+
+
+
+
+
+
+
+
+start_menu()
+
+        
+
+        
