@@ -17,7 +17,7 @@ class Package:
 
     def __repr__(self):
         return (f"Package({self.package_id}, {self.street}, {self.city}, {self.state}, "
-                f"{self.zip_code}, {self.deadline}, {self.weight}, {self.notes})")
+                f"{self.zip_code}, {self.deadline}, {self.weight}, {self.notes}, {self.deliveryTime}, {self.departureTime})")
     
     def status_update(self, timeDelta) :
         if self.deliveryTime == None:
@@ -79,15 +79,8 @@ class HashTable:
     def lookup_package(self, package_id):
         package = self.get(package_id)
         if package:
-            return {
-                "delivery_address": package.street,
-                "delivery_deadline": package.deadline,
-                "delivery_city": package.city,
-                "delivery_zip_code": package.zip_code,
-                "package_weight": package.weight,
-                "delivery_status": package.status,
-                "delivery_time": package.delivery_time
-            }
+            return package
+            
         else:
             print(f"Package ID {package_id} not found.")
             return None
