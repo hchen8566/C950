@@ -64,18 +64,17 @@ truck_1 = truck.Truck(16, 18, None, None, 0.0, "4001 South 700 East", datetime.t
 # the second truck will fill up on packages that are remaining until the load has been met
 truck_2 = truck.Truck(16, 18, None, None, 0.0, "4001 South 700 East", datetime.timedelta(hours=9, minutes=5))
 
-# the third truck will take packages 13, 15, 19, 14, 16, 20 which have to be delivered together
-# the third truck will then take packages without special notes until it has reached 16 packages
+# third truck priority load packages with deadlines and then load on ones without deadline or special notes until full
 truck_3 = truck.Truck(16, 18, None, None, 0.0, "4001 South 700 East", datetime.timedelta(hours=8))
 
-# loading truck 3 first (highlighted in green in the xlsx document)
-truck_3.packages = [15, 13, 14, 19, 16, 20, 1, 2, 4, 5, 7, 8, 10, 11, 12, 17]
+# loading truck 3 first (highlighted in yellow in the xlsx document)
+truck_3.packages = [15, 14, 19, 20, 16, 1, 13, 29, 31, 30, 34, 37, 40, 4, 5]
 
-# loading truck 2 (highlighted in yellow in the xlsx document)
-truck_2.packages = [3, 6, 18, 25, 28, 32, 36, 38, 21, 22, 23, 24, 26, 27]
+# loading truck 2 (highlighted in green in the xlsx document)
+truck_2.packages = [3, 18, 36, 38, 6, 25, 28, 32, 7, 8, 10, 11, 12, 2]
 
 # loading truck 1 (highlighted in blue in the xlsx document)
-truck_1.packages = [9, 29, 30, 31, 33, 34, 35, 37, 39, 40]
+truck_1.packages = [9, 17, 24, 26, 27, 33, 35, 39, 21, 22, 23]
 
 # function to get the address id of an address from addressCSV.csv (this will be used when using the table to find distance)
 def get_address_int(address):
