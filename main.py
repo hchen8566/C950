@@ -163,7 +163,7 @@ def start_menu():
         if (user_input == "1"):
 
             try:
-                user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                user_time = input("Please enter a time in the format HH:MM:SS: \n")
                 hours, minutes, seconds = map(int, user_time.split(':'))
                 user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
                 print("Your entered time is ", user_time)
@@ -181,12 +181,12 @@ def start_menu():
         if (user_input == "2"):
 
             try:
-                user_input = input("\n Please choose which truck (1, 2, 3): \n")
+                user_input = input("Please choose which truck (1, 2, 3): \n")
 
                 # user chooses truck 1
                 if (user_input == "1"):
                     try:
-                        user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                        user_time = input("Please enter a time in the format HH:MM:SS: \n")
                         hours, minutes, seconds = map(int, user_time.split(':'))
                         user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
                         print("Your entered time is : ", user_time, " for Truck 1\n")
@@ -203,7 +203,7 @@ def start_menu():
                 # user chooses truck 2
                 if (user_input == "2"):
                     try:
-                        user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                        user_time = input("Please enter a time in the format HH:MM:SS: \n")
                         hours, minutes, seconds = map(int, user_time.split(':'))
                         user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
                         print("Your entered time is : ", user_time, " for Truck 2\n")
@@ -221,7 +221,7 @@ def start_menu():
                 # user chooses truck 3
                 if (user_input == "3"):
                     try:
-                        user_time = input("\nPlease enter a time in the format HH:MM:SS: \n")
+                        user_time = input("Please enter a time in the format HH:MM:SS: \n")
                         hours, minutes, seconds = map(int, user_time.split(':'))
                         user_time = datetime.timedelta(hours=hours, minutes=minutes, seconds=seconds)
                         print("Your entered time is : ", user_time, " for Truck 3\n")

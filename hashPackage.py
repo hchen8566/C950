@@ -16,7 +16,7 @@ class Package:
         self.deliveryTime = None
     
     def summary(self):
-        print(f"ID: {self.package_id}, Address: {self.street}, {self.city}, {self.state} {self.zip_code}, Depart Time: {self.departureTime}, Delivery Time: {self.deliveryTime}, Status: {self.status}")
+        print(f"ID: {self.package_id}, Address: {self.street}, Deadline: {self.deadline}, Depart Time: {self.departureTime}, Delivery Time: {self.deliveryTime}, Status: {self.status}")
 
     def __repr__(self):
         return (f"Package: ({self.package_id}, {self.street}, {self.city}, {self.state}, "
